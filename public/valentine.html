@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will you be my Valentine?</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fce4ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+        }
+
+        h1 {
+            color: #d81b60;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .gif-container img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        #yes-btn {
+            background-color: #4caf50;
+            color: white;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        #no-btn {
+            background-color: #e53935;
+            color: white;
+            box-shadow: 0 4px 15px rgba(229, 57, 53, 0.4);
+        }
+
+        #result-screen {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="question-screen">
+        <div class="gif-container">
+            <img src="https://media1.tenor.com/m/K2sE98I5S7EAAAAC/mochi-cat-mochi.gif" alt="Cute Bear Asking">
+        </div>
+        <h1>Will you be my Valentine? 🌹</h1>
+        <div class="buttons">
+            <button id="yes-btn" onclick="acceptLove()">Yes</button>
+            <button id="no-btn" onclick="rejectLove()">No</button>
+        </div>
+    </div>
+
+    <div class="container" id="result-screen">
+        <div class="gif-container">
+            <img src="https://media1.tenor.com/m/JcaC6aJi8ZQAAAAC/hug-love.gif" alt="Love Bear">
+        </div>
+        <h1>I love you forever ❤️</h1>
+    </div>
+
+    <script>
+        let yesBtn = document.getElementById("yes-btn");
+        let noBtn = document.getElementById("no-btn");
+        let currentFontSize = 1.2;
+        let currentPadding = 15;
+
+        const messages = [
+            "No", "Are you sure?", "Really sure?", "Think again!", 
+            "Last chance!", "Don't do this!", "I'm gonna cry...", 
+            "You are breaking my heart ;("
+        ];
+        let messageIndex = 0;
+
+        function rejectLove() {
+            currentFontSize += 0.5;
+            currentPadding += 10;
+            yesBtn.style.fontSize = `${currentFontSize}rem`;
+            yesBtn.style.padding = `${currentPadding}px ${currentPadding * 2}px`;
+            messageIndex = (messageIndex + 1) % messages.length;
+            noBtn.innerText = messages[messageIndex];
+        }
+
+        function acceptLove() {
+            document.getElementById("question-screen").style.display = "none";
+            document.getElementById("result-screen").style.display = "block";
+            document.body.style.backgroundColor = "#ffc1e3";
+        }
+    </script>
+</body>
+</html>
